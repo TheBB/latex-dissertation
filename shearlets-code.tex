@@ -1,0 +1,124 @@
+\chapter{Code listings for shearlet library}
+
+The following code listings are mostly real MATLAB code equivalents for the algorithms defined in Section
+\ref{sec:algorithms}. There is generally a one-to-one correspondence between algorithm and file.
+
+\section{Parameters}
+
+All parameters for the method as a whole are stored in a persistent structure which can be retrieved by
+calling a function {\tt Settings}. Due to issues with parallelization in MATLAB, changes to such persistent
+objects are not visible from other threads, so it is advisable to explicitly pass these parameters through
+calling signatures whenever possible. Most functions accept an optional last parameter {\tt params}.
+
+%\lstinputlisting{code/shearlets/Settings.m}
+
+\section{Making and manipulating shearlets}
+
+We give here the {\tt GetTransform} method, which gives the matrix and vector for the affine transformation
+corresponding to a shearlet, and which implements Algorithm \ref{alg:trf}. The {\tt GetShearletCorners} method
+uses {\tt GetTransform} to compute the vertices of the support of a shearlet, one of its subdomains, or the
+computational domain as a whole. It corresponds to Algorithm \ref{alg:corners}.
+
+%\lstinputlisting{code/shearlets/GetShearlet.m}
+%\lstinputlisting{code/shearlets/Right.m}
+%\lstinputlisting{code/shearlets/Up.m}
+%\lstinputlisting{code/shearlets/Flip.m}
+%\lstinputlisting{code/shearlets/RefreshShearletData.m}
+\lstinputlisting[caption={\tt GetTransform}, style=matlab]{code/shearlets/GetTransform.m}
+\lstinputlisting[caption={\tt GetShearletCorners}, style=matlab]{code/shearlets/GetShearletCorners.m}
+
+\section{Evaluating shearlets} \label{sec:lst-eval-shlets}
+
+The {\tt PreparePoints} method takes care of all the transforming being done, as well as some work related to
+periodicity. It returns the transformed points as well as a vector of boolean values denoting whether or not
+this point falls inside the support (which is not always obvious in the periodic case).
+
+%Finally, {\tt EvaluateShearlets} and {\tt EvaluateShearletGradients} provide the same methodology for more
+%than one shearlet (unfortunately not vectorized), and {\tt EvaluateLinCombShearlets} and {\tt
+%EvaluateLinCombShearletGradients} complete the suite by evaluating linear combinations.
+
+\lstinputlisting[caption={\tt PreparePoints}, style=matlab]{code/shearlets/PreparePoints.m}
+%\lstinputlisting{code/shearlets/EvaluateShearlet.m}
+%\lstinputlisting{code/shearlets/EvaluateShearletGradient.m}
+%\lstinputlisting{code/shearlets/EvaluateShearlets.m}
+%\lstinputlisting{code/shearlets/EvaluateShearletGradients.m}
+%\lstinputlisting{code/shearlets/EvaluateLinCombShearlets.m}
+%\lstinputlisting{code/shearlets/EvaluateLinCombShearletGradients.m}
+
+%\section{Linear and bilinear forms}
+
+%These methods evaluate the integrand of some linear and bilinear forms. They take one or two shearlets and the
+%points of evaluation as parameters. We have {\tt BLFKK}, {\tt BLFSS}, {\tt BLFSK} and {\tt BLF} for the
+%bilinear forms for the reaction term, the transport term, the cross term, and everything together
+%respectively. For linear forms we have similarly {\tt LFK} and {\tt LFS}.
+
+%\lstinputlisting{code/shearlets/BLFKK.m}
+%\lstinputlisting{code/shearlets/BLFSS.m}
+%\lstinputlisting{code/shearlets/BLFSK.m}
+%\lstinputlisting{code/shearlets/BLF.m}
+%\lstinputlisting{code/shearlets/LFK.m}
+%\lstinputlisting{code/shearlets/LFS.m}
+
+\section{Intersections}
+
+Here, we have code for {\tt CheckPolygonIntersection}, which checks if two convex polygons are disjoint or
+not (corresponding to Algorithm \ref{alg:checkintersection}, as well as {\tt CheckShearletIntersection}, which
+checks if the supports of two shearlets are disjoint or not (which is not trivial in the period case).
+
+\lstinputlisting[caption={\tt CheckPolygonIntersection}, style=matlab]{code/shearlets/CheckPolygonIntersection.m}
+\lstinputlisting[caption={\tt CheckShearletIntersection}, style=matlab]{code/shearlets/CheckShearletIntersection.m}
+%\lstinputlisting{code/shearlets/GetIntersection.m}
+
+\section{Building quadrature rules}
+
+We give code for {\tt BuildQuadRuleOnPolygon}, which implements the subdivision routine from
+Algorithm~\ref{alg:splitpolygon}. This method is used by {\tt BuildDoubleQuadRule} and {\tt
+BuildSingleQuadRule}, which correspond to Algorithms \ref{alg:builddquadrule} and \ref{alg:buildsquadrule}
+respectively.
+
+%\lstinputlisting{code/shearlets/SplitTriangle.m}
+\lstinputlisting[caption={\tt BuildQuadRuleOnPolygon}, style=matlab]{code/shearlets/BuildQuadRuleOnPolygon.m}
+\lstinputlisting[caption={\tt BuildDoubleQuadRule}, style=matlab]{code/shearlets/BuildDoubleQuadRule.m}
+\lstinputlisting[caption={\tt BuildSingleQuadRule}, style=matlab]{code/shearlets/BuildSingleQuadRule.m}
+
+%\section{Tying it all together}
+
+%The methods {\tt IntegrateBLF} and {\tt EvaluateBLF} (along with their {\tt LF} namesakes for linear forms)
+%take care of the actual integration (using a quadrature rule) in the former case, and orchestrating the whole
+%affair of checking intersections and building quadrature rules (and {\em then} integrating) in the second
+%case.
+
+%\lstinputlisting{code/shearlets/IntegrateBLF.m}
+%\lstinputlisting{code/shearlets/IntegrateLF.m}
+%\lstinputlisting{code/shearlets/EvaluateBLF.m}
+%\lstinputlisting{code/shearlets/EvaluateLF.m}
+
+%\section{Matrices and vectors}
+
+%On the top of the food chain, we find the functions {\tt Stiffness} and {\tt Load}, which store the stiffness
+%matrices and load vectors in persistent variables.  This is also where the parallellization takes place.
+
+%{\tt Stiffness} takes as arguments a matrix identifier, two index sets denoting a submatrix of the global
+%stiffness matrix, a bilinear form and a boolean denoting whether or not the matrix should be symmetric. It
+%then looks up the matrix in memory, determines which (if any) new elements need to be computed, computes them,
+%and then returns the desired submatrix. {\tt Load} works in a similar manner.
+
+%\lstinputlisting{code/shearlets/Stiffness.m}
+%\lstinputlisting{code/shearlets/Load.m}
+
+%\subsection{Visualization}
+
+%These methods are helpful for plotting shearlets. They are given here for completeness. {\tt
+%PlotSingleShearlet} and {\tt PlotSurroundings} are meant to be called from the other methods, and not by
+%themselves.
+
+%\lstinputlisting{code/shearlets/PlotSurroundings.m}
+%\lstinputlisting{code/shearlets/PlotSingleShearlet.m}
+%\lstinputlisting{code/shearlets/PlotShears.m}
+%\lstinputlisting{code/shearlets/PlotShearlets.m}
+%\lstinputlisting{code/shearlets/PlotQuadRule.m}
+%\lstinputlisting{code/shearlets/PlotPolygon.m}
+%\lstinputlisting{code/shearlets/PlotAllShearlets.m}
+%\lstinputlisting{code/shearlets/PlotShearlets.m}
+%\lstinputlisting{code/shearlets/SurfShearlet.m}
+%\lstinputlisting{code/shearlets/QuiverShearletGradient.m}

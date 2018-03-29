@@ -1,0 +1,20 @@
+\chapter*{Abstract}
+
+The numerical solution of high-dimensional kinetic transport equations, where the solution is a function on
+phase space, is subject to the ``curse of dimensionality'' whereby the rate of convergence becomes too slow to
+be practical. This problem can be partly alleviated through sparse tensor discretization, which in turn
+requires the formulation of efficient multilevel bases in both physical and velocity space. In this
+dissertation, we have investigated some discretization methods for the stationary reaction-advection equation
+(physical space) and the spatially homogeneous Boltzmann equation (velocity space).
+
+Shearlets are a system of functions developed for image compression and edge detection, which can efficiently
+resolve anisotropic features. We provide some initial considerations in the hopes of adapting shearlets for
+solving convection-diffusion problems with constant velocity.
+
+For the spatially homogeneous Boltzmann equation, we study a sparse version of the {\em de facto} standard
+Fourier discretization (the hyperbolic cross), which can greatly increase efficiency for solutions far from
+equilibrium. We provide analogues to several established results for the theory of the standard Fourier
+discretization. We also develop a novel polar discretization based on Laguerre polynomials which, while
+generally more expensive than the Fourier method, is considerably more efficient in near-equilibrium
+situations and for long times. Unlike the Fourier method it can also be made fully conservative and requires
+no truncation of the collision operator.

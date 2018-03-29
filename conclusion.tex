@@ -1,0 +1,26 @@
+\chapter{Concluding remarks}
+
+\section{Shearlets}
+
+Shearlets remain an active area of research in image compression, and in spite of the setbacks we detailed in
+Chapter~\ref{chap:shearlets}, they are still a relevant possibility for solving transport-type problems,
+although a working method is likely to look quite different from the setup we pursued.  Work is currently
+being done in this direction which is likely to have more success than ours (for example \cite{ObermeierXX}
+using a Fourier space construction of ridgelets), although it is currently in progress.
+
+\section{The Boltzmann equation}
+
+Aside from crude point-wise discretization methods such as the lattice Boltzmann method, the full-grid Fourier
+discretization is the {\em de facto} standard for solving both the homogeneous and inhomogeneous Boltzmann
+equation. We have presented two other methods. The hyperbolic cross method can outperform full-grid Fourier in
+cases where the solution is far from equilibrium, and the polar Laguerre method will be superior in
+near-equilibrium cases (in particular with zero-moment solutions). The latter is also fully conservative in
+the case of $\beta=1$, unlike any other comparable method (Corollary~\ref{cor:polobs}), and it also requires
+no artificial truncation of the collision operator, which makes it free of aliasing. Its successful
+implementation and use does not require the choice of parameters such as $R$ or $L$. It also appears to
+converge in time, unlike any other existing comparable method, although this is not yet shown. For these
+reasons it can be expected to produce solutions of higher quality than other extant methods. This also appears
+to be backed up by numerical experiments.
+
+It remains to generalize the polar Laguerre method to higher dimensions. For three dimensions, this could be
+accomplished using rotation matrices for spherical harmonics, as discussed in Remark~\ref{rem:rot-pol}.

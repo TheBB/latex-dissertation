@@ -1,0 +1,106 @@
+\chapter{Code listings for polar Boltzmann}
+
+The following listings are in the C++ programming language (although mostly pure C), and show some
+implementation details from the polar Boltzmann method, both for the assembly of the collision operator and
+timestepping. All code here assumes Maxwellian collision kernels and $\beta=1$ or $\beta=2$.
+
+\section{Naming conventions}
+
+Throughout, the following conventions are used.
+\begin{itemize}
+\item {\tt k}, {\tt l} and {\tt q} denote the indices of a basis function according to \eqref{eqn:pol-enum}.
+\item The function space size is given by {\tt Nk} and {\tt Nl}. We also give code for extending an already
+computed tensor, in which case {\tt Nk} and {\tt Nl} define the {\em new} size, and {\tt oldNk} and {\tt
+oldNl} the {\em old} size. Note that the code makes full use of the fact that {\tt Nl} is assumed to be even!
+\item {\tt cdouble} is a synonym for {\tt complex<double>}. Moreover, {\tt stquad} is a synonym for {\tt
+structure quad}, which contains quadrature information (definition not shown). Variables of type {\tt stquad}
+will invariably be called {\tt quad}.
+\item If the preprocessor macro {\tt BASIS2} is defined, $\beta=2$ is assumed, otherwise $\beta=1$.
+\item The discrete collision operator is stored in a single-indexed array {\tt tensor}. Indexing is handled by
+the functions {\tt tensor\_index} and {\tt tensor\_index\_rev} (not shown).
+\item Coefficient vectors are also stored in single-indexed arrays, whose indexing is handled by {\tt
+vector\_index} and {\tt vector\_index\_rev} (also not shown).
+\end{itemize}
+
+\section{Evaluating basis functions}
+
+The function {\tt evaluate\_bfun} accepts an array of points {\tt pts}, and evaluates the basis function at
+that point, storing the results in the array {\tt out}. It also requires two arrays for temporary values,
+needed by the recursive evaluation of Laguerre polynomials in the subroutines {\tt laguerre\_evaluate\_zero}
+for $L_k^{(0)}$ and {\tt laguerre\_evaluate\_one} for $L_k^{(1)}$. These subroutines are not shown.
+
+If {\tt apply\_weight} is false, this function will return the basis function sans exponential weight, which
+is useful in some circumstances.
+
+\lstinputlisting[caption={\tt evaluate\_bfun}, style=c]{code/polboltz/eval.cpp}
+
+\section{Quadrature rules}
+
+Several parts of the code rely on using quadrature rules that are tweaked to precisely the kind of functions
+we will be integrating (exponentially weighted polynomials). We reproduce here the quadrature formulas for
+the sake of completeness.
+
+\lstinputlisting[caption=Quadrature, style=c]{code/polboltz/quad.cpp}
+
+\section{Evaluating inner integrals}
+
+The function {\tt inner} evaluates the integral part of \eqref{eqn:trf-inner}. It accepts $\|\Bv-\Bv_\ast\|$
+and $\|\Bv+\Bv_\ast\|$ as the arguments {\tt vdiff} and {\tt vsum}.
+
+\lstinputlisting[caption={\tt inner}, style=c]{code/polboltz/inner.cpp}
+
+The function {\tt full\_inner} evaluates $\cI^+_{k,l}(\Bv,\Bv_\ast)$ for given $k$ and $l$, at all points
+$(\Bv,\Bv_\ast)$ in the squared quadrature rule, and stores them in the double-indexed array {\tt inner\_mx}.
+It uses a C++ stdlib {\tt map} with fuzzy floating point comparison to tabulate all the currently evaluated
+integrals as functions of $\|\Bv-\Bv_\ast\|$ and $\|\Bv+\Bv_\ast\|$. When it finds a previously computed
+match, it uses that instead of reevaluating the whole integral.
+
+\lstinputlisting[caption={\tt full\_inner}, style=c]{code/polboltz/full_inner.cpp}
+
+The definition of the {\tt stfuzzy} structure is given in the following listing. With a suitably large value
+of {\tt FUZZY} (we have used $10^6$), and not extremely large quadrature rules, the algorithm will only yield
+true matches. This typically speeds up the {\tt full\_inner} function by several orders of magnitude.
+
+\lstinputlisting[caption=Fuzzy floating point comparison, style=c]{code/polboltz/fuzzy.cpp}
+
+\section{Evaluating the discrete collision operator}
+
+The function {\tt outer} evaluates one entry of the gain collision operator $S^{(+)}$. It requires a matrix of
+inner integrals computed by {\tt full\_inner}, implicitly depending on $k$ and $l$. It also requires temporary
+arrays {\tt left} and {\tt right} to store integrands.
+
+\lstinputlisting[caption={\tt outer}, style=c]{code/polboltz/outer.cpp}
+
+For given values of $k$ and $l$, the function {\tt full\_outer} computes all entries of $S^{(+)}$ that
+requires the computation of $\cI^{+}_{k,l}$. This ensures that there is no overlap in calling {\tt
+full\_inner} from different CPUs. The computed values are stored in the single-indexed array {\tt tensor}.
+This function also computes only values which are needed, as specified by the arguments {\tt oldNk} and {\tt
+oldNl}.
+
+\lstinputlisting[caption={\tt full\_outer}, style=c]{code/polboltz/full_outer.cpp}
+
+Finally, the {\tt add\_loss} function is responsible for adding the loss term.
+
+\lstinputlisting[caption={\tt add\_loss}, style=c]{code/polboltz/add_loss.cpp}
+
+In {\tt compute} we illustrate how one can use OpenMP to run such a computation. The job allocation is stored
+in a struct {\tt stjobqueue jall} which is not shown.
+
+\lstinputlisting[caption={\tt compute}, style=c]{code/polboltz/compute.cpp}
+
+\section{Timestepping}
+
+For applying the collision tensor to a coefficient vector {\tt vec}, storing the results in the {\tt out}
+array, we use the {\tt collide} function, which works much like {\tt compute}. It also supports vector sizes
+which may be different from the tensor sizes, as given by {\tt tensNk} and {\tt tensNl}. The quantity {\tt
+aNl} defines the set of active coefficients, and may be smaller than {\tt tensNl}.
+
+Since this is a fairly quick routine, we have used a job allocator instead of a job queue.
+
+\lstinputlisting[caption={\tt collide}, style=c]{code/polboltz/collide.cpp}
+
+The following listing performs time timestepping using a fourth-order explicit Runge-Kutta rule. Note the call
+to {\tt adapt\_check}, which is given in the last listing.
+
+\lstinputlisting[caption={\tt rk\_timestep}, style=c]{code/polboltz/rk_timestep.cpp}
+\lstinputlisting[caption={\tt adapt\_check}, style=c]{code/polboltz/adapt_check.cpp}
