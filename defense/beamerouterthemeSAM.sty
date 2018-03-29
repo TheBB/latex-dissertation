@@ -1,0 +1,89 @@
+% Copyright 2003 by Till Tantau <tantau@users.sourceforge.net>
+%
+% This program can be redistributed and/or modified under the terms
+% of the GNU Public License, version 2.
+%
+% modified Aug 24 2006 by C.Winter
+
+\mode<presentation>
+
+\setbeamercolor*{title in head/foot}{parent=palette secondary}
+\setbeamercolor*{section in head/foot}{parent=palette primary}
+
+ \pgfdeclarehorizontalshading{shading_down}{17pt}{color(0cm)=(cdblue);color(\paperwidth)=(cblue)}
+ \pgfdeclarehorizontalshading{shading_up}{33pt}{color(0cm)=(cblue);color(\paperwidth)=(cdblue)}
+% Head
+
+\defbeamertemplate*{headline}{SAM}
+{%
+  \leavevmode%
+  \begin{beamercolorbox}[leftskip=0pt,ht=28.9pt,dp=0pt,rightskip=0pt]{section in head/foot}%
+    \begin{pgfpicture}{2pt}{-4pt}{\paperwidth}{19.4pt}
+	\pgfbox[left,top]{
+	    \pgfuseshading{shading_up}
+	 }
+    \end{pgfpicture}
+    
+     \vbox to28.9pt{\vfil%
+    \begin{pgfpicture}{-8.6pt}{0pt}{59.6pt}{14.9pt}
+     \includegraphics[height=14.9pt]{ethlogo_white}%
+    \end{pgfpicture}
+     \vspace*{-2pt}
+     \insertsectionnavigationhorizontal{0.8\paperwidth}{\hskip0pt plus1filll}{}{}%
+     \vfil}%
+  \end{beamercolorbox}%
+  
+}
+
+% Foot
+
+\defbeamertemplate*{footline}{SAM}
+{%
+  \leavevmode%
+  \begin{beamercolorbox}[leftskip=0pt,ht=17pt,dp=0pt,rightskip=0pt]%
+  {title in head/foot}%
+\begin{pgfpicture}{2pt}{0pt}{\paperwidth}{17pt}
+\pgfbox[left,top]{
+\pgfuseshading{shading_down}
+ }
+\end{pgfpicture}
+   \vbox to17pt{\vfil%
+   \hspace{6pt}%
+   \makebox[0.3\paperwidth][l]{\insertshortauthor}
+   \hspace*{6pt}
+   \makebox[0.3\paperwidth]{\insertshortdate }
+   \hspace*{6pt}
+   \makebox[0.3\paperwidth][r]{p. \insertframenumber} 
+   \hspace{6pt}%
+   \vfil}%  
+  \end{beamercolorbox}%
+}
+
+% Frame title
+
+\defbeamertemplate*{frametitle}{SAM}[1][left]
+{
+  \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
+  \@tempdima=\textwidth%
+  \advance\@tempdima by\beamer@leftmargin%
+  \advance\@tempdima by\beamer@rightmargin%
+  \begin{beamercolorbox}[#1,wd=\the\@tempdima]{frametitle}
+    \usebeamerfont{frametitle}%
+    \vbox{}\vskip-1ex%
+    \if@tempswa\else\csname beamer@fte#1\endcsname\fi%
+    \vspace{10pt}
+    \hspace{\beamer@leftmargin}\strut\insertframetitle\strut\par%
+    {%
+      \ifx\insertframesubtitle\@empty%
+      \else%
+      {\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}%
+      \insertframesubtitle\strut\par}%
+      \fi
+    }%
+    \vskip-1ex%
+    \if@tempswa\else\vskip-.3cm\fi
+  \end{beamercolorbox}%
+}
+
+\mode
+<all>

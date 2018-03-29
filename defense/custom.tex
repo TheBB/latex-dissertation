@@ -1,0 +1,198 @@
+% Number systems, fields, rings, groups...
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\bbC}{\mathbb{C}}
+\newcommand{\bbZ}{\mathbb{Z}} 
+\newcommand{\bbN}{\mathbb{N}}
+\newcommand{\bbS}{\mathbb{S}}
+
+% Calligraphic style
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+
+% Roman style
+\newcommand{\rmK}{\mathsf{K}}
+\newcommand{\rmM}{\mathsf{M}}
+\newcommand{\rmP}{\mathsf{P}}
+\newcommand{\rmS}{\mathsf{S}}
+
+\newcommand{\rmm}{\mathsf{m}}
+\newcommand{\rms}{\mathsf{s}}
+
+% Boldface
+\newcommand{\Ba}{{\bm a}}
+\newcommand{\Bb}{{\bm b}}
+\newcommand{\Bc}{{\bm c}}
+\newcommand{\Bd}{{\bm d}}
+\newcommand{\Be}{{\bm e}}
+\newcommand{\Bg}{{\bm g}}
+\newcommand{\Bk}{{\bm k}}
+\newcommand{\Bl}{{\bm \ell}}
+\newcommand{\Bm}{{\bm m}}
+\newcommand{\Bn}{{\bm n}}
+\newcommand{\Bp}{{\bm p}}
+\newcommand{\Bq}{{\bm q}}
+\newcommand{\Bs}{{\bm s}}
+\newcommand{\Bu}{{\bm u}}
+\newcommand{\Bv}{{\bm v}}
+\newcommand{\Bw}{{\bm w}}
+\newcommand{\Bx}{{\bm x}}
+\newcommand{\By}{{\bm y}}
+
+\newcommand{\BA}{{\bm A}}
+
+\newcommand{\Bzeta}{{\bm\zeta}}
+\newcommand{\Bxi}{{\bm\xi}}
+\newcommand{\Bsig}{{\bm\sigma}}
+\newcommand{\Bsigma}{\Bsig}
+\newcommand{\Balpha}{{\bm\alpha}}
+\newcommand{\Bbeta}{{\bm\beta}}
+
+\newcommand{\Bzero}{{\bm0}}
+
+% Symbols
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\eqdef}{=\vcentcolon}
+
+% Hats
+\newcommand{\hf}{\hat{f}}
+\newcommand{\hbeta}{\hat{\beta}}
+
+\newcommand{\hPsi}{\hat{\Psi}}
+
+% Symbols in special fonts
+\newcommand{\blfa}{{\sf a}}
+\newcommand{\lfl}{{\ell}}
+\newcommand{\ii}{\mathsf{i}}
+\newcommand{\ee}{\mathsf{e}}
+
+% Algorithmic
+\newcommand{\BREAK}{\STATE \textbf{BREAK}}
+
+\usefont{T1}{cmtt}{m}{n}
+
+% Notes, etc.
+\newcommand{\todo}[1]{{\color{red}\textbf{TODO:} #1}}
+
+% Listing
+\definecolor{Number}{rgb}{0.0,0.0,1.0}
+\definecolor{Keyword}{rgb}{0.8,0.3,0.0}
+\definecolor{UDKeyword}{rgb}{0.2,0.7,0.0}
+\definecolor{Comment}{rgb}{0.5,0.5,0.5}
+\definecolor{String}{rgb}{0.7,0.0,0.6}
+\lstloadlanguages{Matlab}
+\lstdefinestyle{matlab}{
+    language=Matlab
+  , frame=single
+  %
+  , basicstyle=\scriptsize\ttfamily
+  , keywordstyle=[1]\color{Keyword}
+  , keywordstyle=[2]\color{UDKeyword}
+  , identifierstyle=
+  , commentstyle=\color{Comment}
+  , stringstyle=\color{String}
+  %
+  , numbers=left
+  , stepnumber=1
+  , numbersep=5pt
+  , numberstyle=\tiny\color{Number}\ttfamily
+  %
+  , tabsize=4
+  , showspaces=false
+  , showstringspaces=false
+  %
+  , morekeywords={xlim,ylim,varargin,varargout,nargin,nargout,persistent,switch,case,ones,zeros,isfield,mod,
+                  setdiff,repmat,parfor}
+  , deletekeywords={qr}
+  , morekeywords=[2]{Settings,GetShearlet,RefreshShearletData,Right,Up,Flip,GetShearletCorners,
+                     GetTransform,PreparePoints,EvaluateShearlet,EvaluateShearletGradient,BLFKK,BLFSS,BLFSK,
+                     BLF,LFK,LFS,CheckPolygonIntersection,CheckShearletIntersection,GetIntersection,
+                     BuildPolygon,PolygonClip,CrossesBoundary,AddToPol,SplitTriangle,BuildQuadRuleOnPolygon,
+                     TransformQuadRule,BuildSingleQuadRule,IntegrateBLF,IntegrateLF,EvaluateBLF,EvaluateLF,
+                     BuildDoubleQuadRule,Stiffness,Load}
+  , morecomment=[l][\color{Comment}]{...}
+}
+\lstdefinestyle{c}{
+    language=C
+  , frame=single
+  %
+  , basicstyle=\scriptsize\ttfamily
+  , keywordstyle=[1]\color{Keyword}
+  , keywordstyle=[2]\color{UDKeyword}
+  , identifierstyle=
+  , commentstyle=\color{Comment}
+  , stringstyle=\color{String}
+  %
+  , numbers=left
+  , stepnumber=1
+  , numbersep=5pt
+  , numberstyle=\tiny\color{Number}\ttfamily
+  %
+  , tabsize=4
+  , showspaces=false
+  , showstringspaces=false
+  %
+  , morekeywords={pragma}
+  , morekeywords=[2]{evaluate_bfun,laguerre_evaluate_zero,laguerre_evaluate_one,q_to_l,l_to_q,
+                     init_quad_radial,init_quad_angular,init_quad,inner,full_inner,outer,full_outer,
+                     tensor_index,add_loss,compute,init_jobs_queue,collide,vector_index,rk_timestep,
+                     adapt_check,init_jobs_alloc,free_jobs_alloc,free_jobs_queue}
+  , morecomment=[l][\color{Comment}]{...}
+}
+
+% Operators
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\idty}{Id}
+\DeclareMathOperator{\spann}{span}
+\DeclareMathOperator{\Mod}{mod}
+
+\newcommand{\dd}{\,\text{d}}
+\newcommand{\fdd}{\text{d}}
+
+% Shearlet chapter notation
+\newcommand{\aPsi}[5]{\Psi_{#1,#2,#3}^{#4,#5}}
+\newcommand{\numatlevel}{\operatorname{NumAtLevel}}
+\newcommand{\numright}{\operatorname{NumRight}}
+\newcommand{\numup}{\operatorname{NumUp}}
+\newcommand{\numshears}{\operatorname{NumShears}}
+\newcommand{\nummothers}{\operatorname{NumMothers}}
+\newcommand{\stepright}{\operatorname{StepRight}}
+\newcommand{\stepup}{\operatorname{StepUp}}
+\newcommand{\shear}{\operatorname{Shear}}
+\newcommand{\basetrf}{\operatorname{BaseTransform}}
+\newcommand{\trf}{\operatorname{Transform}}
+\newcommand{\corners}{\operatorname{Corners}}
+\newcommand{\checkintersection}{\operatorname{CheckIntersection}}
+\newcommand{\computeintersection}{\operatorname{ComputeIntersection}}
+\newcommand{\splitpolygon}{\operatorname{SplitPolygon}}
+\newcommand{\transformquadrule}{\operatorname{TransformQuadrule}}
+\newcommand{\builddquadrule}{\operatorname{BuildDoubleQuadrule}}
+\newcommand{\buildsquadrule}{\operatorname{BuildSingleQuadrule}}
+\newcommand{\evalblf}{\operatorname{EvalBLF}}
+\newcommand{\evallf}{\operatorname{EvalLF}}
+\newcommand{\preparepoints}{\operatorname{PreparePoints}}
+\newcommand{\modd}{\;\operatorname{\textbf{mod}}\;}
+
+% Boltzmann chapter notation
+\newcommand{\Bt}{\tilde{B}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\Bsr}{\B_{\sqrt{2}R}}
+\newcommand{\Btr}{\B_{2R}}
+\newcommand{\AFF}{\cA_\text{FF}}
+\newcommand{\ml}{\lambda^{(+)}}
+\newcommand{\LtDl}{{L^2(\cD_L)}}
+\newcommand{\PA}{{P_\cA}}
+\newcommand{\Qt}{Q_\text{lin}}
+
+% Circled characters
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+    \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}

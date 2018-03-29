@@ -1,0 +1,89 @@
+% Copyright 2003 by Till Tantau <tantau@users.sourceforge.net>
+%
+% This program can be redistributed and/or modified under the terms
+% of the GNU Public License, version 2.
+%
+% modified Aug 24 2006 by C.Winter
+
+\mode<presentation>
+
+% Title page
+ \pgfdeclarehorizontalshading{shading_title_down}{5mm}{color(0cm)=(cdblue);color(13cm)=(cblue)}
+ \pgfdeclarehorizontalshading{shading_title_up}{33pt}{color(0cm)=(cblue);color(13cm)=(cdblue)}
+
+\defbeamertemplate*{title page}{SAM}[1][]
+{%   
+  \leavevmode%
+  \begin{beamercolorbox}[leftskip=-31.5pt,ht=23pt,dp=0pt,rightskip=0pt]{header}%
+    \begin{pgfpicture}{0pt}{-4.6pt}{\paperwidth}{37.4pt}
+	\pgfbox[left,top]{
+	    \pgfuseshading{shading_title_up}
+	 }
+    \end{pgfpicture}
+    
+     \vbox to23pt{\vfil%
+    \begin{pgfpicture}{-11.5pt}{-2pt}{5cm}{20.1pt}
+     \includegraphics[height=20.1pt]{ethlogo_white}%
+    \end{pgfpicture}
+%
+    \begin{pgfpicture}{-132.25pt}{-5.2pt}{5cm}{14.4pt}
+	  \includegraphics[height=14.4pt]{samlogo_white}%
+    \end{pgfpicture}
+      \vfil}%
+  \end{beamercolorbox}
+       
+  \vfill
+  
+  \vbox to 35mm{\vfil% 
+  \vspace*{-1em}
+  \begin{beamercolorbox}[left,#1]{title}
+  \usebeamerfont{title}\inserttitle    
+  \end{beamercolorbox}%
+  \vskip1em\par
+  \begin{beamercolorbox}[left,#1]{author}
+  \usebeamerfont{author}\insertauthor%
+  \end{beamercolorbox}
+  \begin{beamercolorbox}[left,#1]{institute}
+  \usebeamerfont{institute}\insertinstitute%
+  \end{beamercolorbox}
+  \vskip0.5em\par
+  \begin{beamercolorbox}[left,#1]{date}
+  \usebeamerfont{author}\insertdate%
+  \end{beamercolorbox}
+  \vfil}
+
+  \begin{beamercolorbox}[leftskip=-29pt,ht=40mm,dp=0pt,rightskip=0pt]{graphic}%
+
+    \begin{pgfpicture}{-0.5pt}{32.8pt}{\paperwidth}{32.8pt}
+   \includegraphics[width=\paperwidth]{ethkuppel}%
+    \end{pgfpicture}
+
+    \begin{pgfpicture}{5pt}{0.575pt}{\paperwidth}{32.8pt}
+	\pgfbox[left,top]{
+	    \pgfuseshading{shading_title_down}
+	 }
+    \end{pgfpicture}
+  \end{beamercolorbox}%
+}
+
+% Itemize items
+
+\defbeamertemplate*{itemize 
+item}{SAM}{
+\color{cblue}
+\begin{pgfpicture}{-.15}{.15}{0.1}{0.01}
+\pgfrect[fill]{\pgfpoint{0cm}{0.04cm}}{\pgfpoint{0.19cm}{0.19cm}}
+\end{pgfpicture}
+}
+
+
+\defbeamertemplate*{itemize 
+subitem}{SAM}{
+\color{cdblue}
+\begin{pgfpicture}{-.15}{.15}{0.1}{0.01}
+\pgfrect[fill]{\pgfpoint{0cm}{0.04cm}}{\pgfpoint{0.19cm}{0.19cm}}
+\end{pgfpicture}
+}
+
+\mode
+<all>
