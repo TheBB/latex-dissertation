@@ -5,5 +5,8 @@
 *.fls
 *.log
 *.out
-/*.pdf
+/diss.pdf
+/defense/pres.pdf
 *.toc
+*.nav
+*.snm
