@@ -20,9 +20,12 @@ with stochastic methods or lattice Boltzmann methods.
 
 Existing work on the discretization of \eqref{eqn:boltzmann-sphom} rely heavily on Fourier spectral
 discretization, which can exploit the convolution structure of $Q$ owing to the translation invariance of
-Theorem~\ref{thm:trans-rot-Q}. See \cite{Bobylev88, Kirsch07, Pareschi96} and \cite{Gamba09, Gamba10,
-Filbet06, Pareschi00, Pareschi03} for numerical simulations based on that method. Also related to this are the
-difference methods developed in \cite{BobylevR97, Bobylev99, Bobylev00} and \cite{Ibragimov02}.
+Theorem~\ref{thm:trans-rot-Q}. See
+\cite{Bobylev1988tns, Kirsch2007wfb, Pareschi1996fsm} and
+\cite{Gamba2009slm, Gamba2010sbs, Filbet2006sbe, Pareschi2000nsb, Pareschi2003smb}
+for numerical simulations based on that method. Also related to this are the
+difference methods developed in
+\cite{Bobylev1997dsb, Bobylev1999fdm, Bobylev2000nsb} and \cite{Ibragimov2002nsb}.
 
 The approach entails two fundamental modifications of the collision operator:
 \begin{enumerate}
@@ -42,16 +45,16 @@ Section~\ref{sec:fourier}.
 
 Subsequently, \eqref{eqn:QR} is projected onto a subspace of $L^{2}(\cD_{L})$ spanned by a
 finite set of Fourier modes. An in-depth analysis of the discretization error due
-to this last step has recently been developed by Filbet and Mouhot in \cite{Filbet11},
+to this last step has recently been developed by Filbet and Mouhot in \cite{Filbet2011asm},
 and in parts of our work we are going to rely on their techniques. 
 
 One of our main goals was to provide a priori estimates of the discretization error for \eqref{eqn:QR} in
 $H^{s}$-Sobolev norms, $s\geq 0$, for rather general sets of Fourier modes, which includes as a special cases
 the so-called hyperbolic crosses. For certain types of solutions, this scheme offers much more efficient
 approximation compared to the full tensor product space of Fourier modes. This extends the results of
-\cite{Filbet11}. 
+\cite{Filbet2011asm}.
 
-In another respect we go beyond \cite{Filbet11}: we also quantify the impact of
+In another respect we go beyond \cite{Filbet2011asm}: we also quantify the impact of
 switching from (\ref{eqn:boltzmann-sphom}) to (\ref{eqn:QR}), conditional
 on the following conjecture.
 \begin{conjecture} \label{ass:decay}
@@ -74,7 +77,7 @@ on the following conjecture.
   equilibrium solutions fit the assumption. For example, if $\Balpha=0$ and 
   $f_R(t,\Bv)=\exp(-a|\Bv|^2)$ we require $\Pi(L) \geq (2L)^{\nicefrac{d}{2}}$.
   
-  The decay of $f$ is well known, see for example \cite{Bobylev97}.  Yet, so far,
+  The decay of $f$ is well known, see for example \cite{Bobylev1997mib}.  Yet, so far,
   there is no rigorous proof that the Conjecture~\ref{ass:decay} holds for
   $f_R$. We have only numerical evidence that this is true, see
   Section~\ref{sec:decay}.
@@ -118,12 +121,12 @@ Carleman representation}
     Q(f,h)(\Bv) = \int_{\bbR^d}\int_{\bbR^d} \Bt(\Bx,\By) \delta(\Bx\cdot\By) \\
     \left[ h(\Bv+\By)f(\Bv+\Bx) - h(\Bv+\Bx+\By)f(\Bv) \right] \dd \Bx \dd \By,
 \end{multline}
-whose derivation is detailed in \cite{Mouhot06} and also in \cite{Bobylev99} for hard sphere collision
+whose derivation is detailed in \cite{Mouhot2006fac} and also in \cite{Bobylev1999fdm} for hard sphere collision
 kernels ($B\equiv|\Bg|$).
 
-The following proposition is given in \cite{Pareschi00}, with $\B_R$ denoting
-the ball of radius $R$ centered at $0$. It follows more or less straightforwardly from \cite{Pareschi96}.
-\begin{proposition}[Proposition 3.1 in \cite{Pareschi00}] \label{prop:trunc}
+The following proposition is given in \cite{Pareschi2000nsb}, with $\B_R$ denoting
+the ball of radius $R$ centered at $0$. It follows more or less straightforwardly from \cite{Pareschi1996fsm}.
+\begin{proposition}[Proposition 3.1 in \cite{Pareschi2000nsb}] \label{prop:trunc}
 Let $\supp f,h\subseteq\B_R$. Then, $\supp Q(f,h)\subseteq\Bsr$, and 
 \[ 
     Q(f,h)(\Bv) = \int_{\Btr}\int_{\bbS^{d-1}} 
@@ -139,12 +142,12 @@ practice, $L$ should be chosen large enough to accommodate the necessary number
 of timesteps while minimizing the aliasing errors, as the support of $f$ will
 grow.
 
-Common practice \cite{Pareschi00, Mouhot06} is to choose $R,L$ so that aliasing is avoided for one
+Common practice \cite{Pareschi2000nsb, Mouhot2006fac} is to choose $R,L$ so that aliasing is avoided for one
 single application of the collision operator. This holds if
 $$
     \kappa = \frac{R}{L} \leq \frac{2}{3+\sqrt{2}},
 $$
-see for example \cite[Fig. 1]{Pareschi00}.  In Section~\ref{sec:aliasing} we present some numerical
+see for example \cite[Fig. 1]{Pareschi2000nsb}.  In Section~\ref{sec:aliasing} we present some numerical
 experiments showing how the choice of $\kappa$ can significantly impact the performance of a numerical scheme.
 
 The task is now to bring the Carleman representation \eqref{eqn:Q-m} into
@@ -168,7 +171,7 @@ following representations of $Q(f,h)(\Bv)$ agree.
 \end{proposition}
 \begin{proof}
 Representation \eqref{eqn:Q-p-b} follows from Proposition \ref{prop:trunc}.
-Following the policy from \cite{Mouhot06}, it can be shown that 
+Following the policy from \cite{Mouhot2006fac}, it can be shown that
 \begin{multline*}
     Q(f,h)(\Bv) = \int_{\bbR^d}\int_{\bbR^d}\Bt(\Bx,\By)\delta(\Bx\cdot \By)\chi_{\B_{2R}}(\Bx+\By)  \\ 
     \left[h(\Bv+\By)f(\Bv+\Bx)-h(\Bv+\Bx+\By)f(\Bv)\right] \dd \Bx \dd \By. 
@@ -196,7 +199,7 @@ truncation parameter $\kappa=\nicefrac{R}{L}$.
 
 \subsection{Fourier discretization} \label{sec:FourierDiscretization}
 
-Following ideas from \cite{Gottlieb77, Canuto88}, let us now discretize $f$ by
+Following ideas from \cite{Gottlieb1977nas, Canuto1988smf}, let us now discretize $f$ by
 representing it as a truncated $d$-dimensional Fourier series in $\Bv$, 
 \begin{equation} \label{eqn:fn}
     f_\cA(t,\Bv) = \sum_{\Bk\in\cA} \hf_\Bk(t) \ee^{\ii\Bk\cdot\Bv},
@@ -260,7 +263,7 @@ and
         \ee^{\ii\Bm\cdot \By} \dd \Bx \dd \By,
 \end{equation}
 for $\Bl,\Bm\in\cA$. For more information regarding efficient computation of kernel modes we refer to
-\cite{Pareschi00,Mouhot06}.
+\cite{Pareschi2000nsb,Mouhot2006fac}.
 
 \section{Choice of $\cA$} \label{sec:hyper}
 
@@ -269,8 +272,8 @@ course, it is required that $\cA$ is a subset of the scaled lattice grid
 \[ 
     \cA \subset \frac{\pi}{L}\bbZ^d. 
 \]
-The obvious choice, and the one adopted in \cite{Pareschi00} and
-\cite{Mouhot06} is the full $d$-dimensional discrete Fourier
+The obvious choice, and the one adopted in \cite{Pareschi2000nsb} and
+\cite{Mouhot2006fac} is the full $d$-dimensional discrete Fourier
 representation with $N$ degrees of freedom in each direction:
 \[
     \AFF(N) = \frac{\pi}{L}\left\{-\frac{N}{2}, -\frac{N}{2}+1, \ldots, 
@@ -279,7 +282,7 @@ representation with $N$ degrees of freedom in each direction:
 
 An alternative choice is the {\em hyperbolic cross} Fourier space, which can be
 considered the frequency-space equivalent of sparse grids (see for example
-\cite{Gradinaru07,Knapek00,Griebel13} for more details),
+\cite{Gradinaru2007fts,Knapek2000hca,Griebel2013fdf} for more details),
 \[
     \cA_Y(N):= \left\{ \Bk\in \frac{\pi}{L}\bbZ^d \;:\; \prod_{j=1}^d(1+|\tilde{k}_j|)
             \cdot (1+|\tilde{\Bk}|_\infty)^{-Y} \le (1+N)^{1-Y} \right\},
@@ -378,7 +381,7 @@ course impact the on-axis modes during evolution.
 
 The evaluation of $Q(f_\cA,f_\cA)$ requires the formation of the sum \eqref{eqn:boltzmann-d}. There are no
 fast algorithms to compute this, unless some kind of separability of $\hbeta$ is available, as in
-\cite{Mouhot06}, which seems to be the case only for certain specific kernels $B$. In these cases the sum has
+\cite{Mouhot2006fac}, which seems to be the case only for certain specific kernels $B$. In these cases the sum has
 a convolution structure and we can evaluate the collision operator by using an FFT method requiring log-linear
 time ($\cO(dN\log(N))$, where $N$ is the number of degrees of freedom in one dimension).
 
@@ -444,7 +447,7 @@ functions.
 \end{theorem}
 The proof of this theorem treats the gain- and loss term separately.  In order
 to handle the gain term we need the following result from \cite[Theorems 1,
-2]{Alonso10}.  
+2]{Alonso2010cib}.
 \begin{theorem}\label{thm:L2boundGain}
     If $\lambda \geq 0$, with constants also depending on $\lambda$,
     \[
@@ -470,12 +473,12 @@ to handle the gain term we need the following result from \cite[Theorems 1,
     \]
 \end{theorem}
 \begin{proof}
-    This result has been shown in \cite[Theorems 1, 2]{Alonso10} for the
+    This result has been shown in \cite[Theorems 1, 2]{Alonso2010cib} for the
     non-truncated gain operator $Q^+$ and with the norms for the terms
     $Q^{R,+}(f,g), f, g$ taken over all of $\mathbb{R}^d$ instead of bounded subsets.
 
     As to the effect of the truncation we remark that exactly the same
-    arguments as in \cite{Alonso10} apply to the truncated case by replacing
+    arguments as in \cite{Alonso2010cib} apply to the truncated case by replacing
     \[
         B(|\Bg|,\cos\theta)\leftrightarrow 
                 B(|\Bg|,\cos\theta)\chi_{\mathcal{B}_{2R}},
@@ -586,7 +589,7 @@ to handle the gain term we need the following result from \cite[Theorems 1,
     This proves the theorem.
 \end{proof}
 The second result we will require is a product rule for derivatives
-of the collision operator which can be found in \cite{Villani98}.
+of the collision operator which can be found in \cite{Villani1998fie}.
 \begin{proposition}\label{prop:prodrule}
     We have 
     \[
@@ -596,7 +599,7 @@ of the collision operator which can be found in \cite{Villani98}.
     direction.
 \end{proposition}
 \begin{proof}
-    This result has been proven in \cite{Villani98}, but we give a simpler
+    This result has been proven in \cite{Villani1998fie}, but we give a simpler
     proof which applies to the case when $f$ and $g$ are $2L$-periodic, which
     is of interest to us. In this case we can write
     \begin{align*}
@@ -625,7 +628,7 @@ in $\cA$.
 If the support of $f$ lies in a ball $\B_R$, by Proposition \ref{prop:equiv} such a bound yields error bounds
 for the $H^s$-norm of the error between the application of the discretized collision operator $\PA Q^R(\PA
 f,\PA f)$ and the application of the truncated operator $Q^R(f,f)$ in terms of $f$.  These results generalize
-the results of \cite{Pareschi00} to more general sets of Fourier modes. 
+the results of \cite{Pareschi2000nsb} to more general sets of Fourier modes.
 
 We will examine this consistency error for a family of different Fourier
 discretizations. Only for simplicity we will assume $L = 1$ and, therefore, all
@@ -633,7 +636,7 @@ function spaces to follow are defined on $[-1,1]^d$. The case of general $L$ is
 hardly more difficult, but it would require heavier notation.
 
 The corresponding smoothness spaces are the following \emph{mixed Sobolev spaces}
-as defined in \cite{Knapek00}.
+as defined in \cite{Knapek2000hca}.
 \begin{definition}
     We define the smoothness spaces
     \begin{equation}
@@ -649,7 +652,7 @@ as defined in \cite{Knapek00}.
     For $t=0$ we get the usual Sobolev spaces, for $l=0$ we get the Sobolev
     spaces with dominating mixed smoothness.
 \end{remark}
-In \cite{Knapek00} the following approximation result is shown.
+In \cite{Knapek2000hca} the following approximation result is shown.
 \begin{theorem}\label{thm:Knapek}
     We have
     \[
@@ -795,7 +798,7 @@ Due to the periodicity of $f_\cA$, the error will necessarily have to be
 estimated on a bounded domain.
 
 In Section~\ref{sec:extfilb} we will estimate the error $\|f_\cA-f_R\|$ by relying
-on work by Filbet and Mouhot \cite{Filbet11}. In Section~\ref{sec:err-trunc} we
+on work by Filbet and Mouhot \cite{Filbet2011asm}. In Section~\ref{sec:err-trunc} we
 will estimate the error $\|f_R-f\|$ due to truncation.
 
 Throughout, we will make Assumption \ref{ass:B} and in Section~\ref{sec:err-trunc}
@@ -806,12 +809,13 @@ theory remains true for general $\cA$.
 
 \subsubsection{Error due to discretization} \label{sec:extfilb}
 
-First, we will aim to generalize the non-global results of \cite{Filbet11}, by
-which me mean everything up to, and including, \cite[Proposition
-4.6]{Filbet11}\footnote{The remainder of \cite{Filbet11} involves global estimates under an assumption of
+First, we will aim to generalize the non-global results of \cite{Filbet2011asm}, by
+which me mean everything up to, and including,
+\cite[Proposition 4.6]{Filbet2011asm}\footnote{
+  The remainder of \cite{Filbet2011asm} involves global estimates under an assumption of
   $\kappa\geq\sqrt{2}$. This assumption appears non-physical, however, and causes heavy aliasing, see 
-  Section~\ref{sec:aliasing}.}. The program involves studying a perturbation from the {\em
-  truncated} equation, of the form
+  Section~\ref{sec:aliasing}.
+}. The program involves studying a perturbation from the {\em truncated} equation, of the form
 \begin{equation} \label{eqn:pert}
     \frac{\partial}{\partial t}{f}_\cA = Q^R(f_\cA) + r_\cA
 \end{equation}
@@ -835,7 +839,7 @@ First, let us recall
 \begin{proof}
 This is a straightforward generalization of the proofs of Theorems
 \ref{thm:L2bound} and \ref{thm:L2boundGain}. It is also the content of 
-\cite[Lemma 4.1]{Filbet11}.
+\cite[Lemma 4.1]{Filbet2011asm}.
 \end{proof}
 
 Furthermore we have the product rule from Proposition~\ref{prop:prodrule}
@@ -910,7 +914,7 @@ Note that for any $\cA$ and $\Balpha\in\bbN^d$, it is obvious that
     \ref{lem:bound} and a combinatorial expression depending on $\Balpha$.
 \end{proof}
 These results allow us to state the following analogue of \cite[Lemma
-4.2]{Filbet11}:
+4.2]{Filbet2011asm}:
 \begin{lemma}\label{lem:prop}
     Consider the evolution problem \eqref{eqn:pert} and
     assume that we have a uniform $L^1$-bound 
@@ -981,7 +985,7 @@ $L^1$- and $H^\Balpha$-norms.
     this interval $\|f_\cA(t)\|_{L^1(\cD_L)}$ is bounded.
 \end{proposition}
 \begin{proof}
-  We closely follow \cite[Proposition 4.3]{Filbet11}. Using Lemma
+  We closely follow \cite[Proposition 4.3]{Filbet2011asm}. Using Lemma
   \ref{lem:bound} with $p=2$, we find that for some $K>0$,
   $$
   \frac{\fdd}{\fdd t}\|f_\cA(t)\|_{L^2(\cD_L)} \le
@@ -1008,7 +1012,7 @@ smoothness of the initial condition.
 
 Such control of the $L^1$-norm is clear for the classical (non-perturbed)
 Boltzmann equation due to preservation of positivity and mass density. In
-\cite{Filbet11}, Lemmas 4.4 and 4.5 provide the following positivity result.
+\cite{Filbet2011asm}, Lemmas 4.4 and 4.5 provide the following positivity result.
 \begin{lemma} \label{lem:positivity}
     Consider the evolution perturbed problem \eqref{eqn:pert}, make Assumption \ref{ass:B},
     and also assume that $f_0\in L^\infty(\cD_L)$ is non-negative, and that it
@@ -1034,14 +1038,14 @@ Boltzmann equation due to preservation of positivity and mass density. In
     $$
 \end{lemma}
 \begin{proof}
-    This is exactly \cite[Lemma 4.5]{Filbet11}. The proof is identical.
+    This is exactly \cite[Lemma 4.5]{Filbet2011asm}. The proof is identical.
 \end{proof}
 The following theorem summarizes the argument, and corresponds to 
-\cite[Proposition 4.6]{Filbet11}. It shows propagation of smoothness for the
+\cite[Proposition 4.6]{Filbet2011asm}. It shows propagation of smoothness for the
 perturbed Boltzmann equation, and provides an estimate for the error $f_R-f_\cA$.
 
 Its proof employs the following nonlinear generalization of Grönwall's lemma.
-\begin{lemma}[Theorem 21 in \cite{Dragomir03}] \label{lem:gron}
+\begin{lemma}[Theorem 21 in \cite{Dragomir2003sgt}] \label{lem:gron}
     Let $u(t)$ be a non-negative function satisfying
     \[
         u(t) \leq c + \int_0^t\left(au(s)+b\sqrt{u(s)}\right)\dd s
@@ -1089,7 +1093,7 @@ Its proof employs the following nonlinear generalization of Grönwall's lemma.
     $N>\hat{N}$, $f_\cA(\hat{\tau},\cdot)$ is positive.
 
       By preservation of mass density
-      (see e.g., \cite[Equation (3.4)]{Filbet11}) and positivity, we thus have
+      (see e.g., \cite[Equation (3.4)]{Filbet2011asm}) and positivity, we thus have
     $$
         \|f_\cA(\hat{\tau})\|_{L^1(\cD_L)} = \|f_0\|_{L^1(\cD_L)} =
         \frac{M}{2}.
@@ -1498,7 +1502,7 @@ the condition on $N$ is
 Numerical results, however, show that the offset method does not perform noticeably better than the pure
 hyperbolic cross method. To explain this, we can resort to a heuristic argument. The Landau operator, which is
 strongly related to the Boltzmann collision operator, acts as an anisotropic diffusion operator with much
-stronger effect in the angular direction than the radial direction, see \cite{Guo02}. We observe this effect
+stronger effect in the angular direction than the radial direction, see \cite{Guo2002lep}. We observe this effect
 also for the Boltzmann equation, particularly strongly in the solutions using the polar method of the next
 chapter (see Section~\ref{sec:numerical-pol}.) Thus, one might expect that the solutions become radially
 symmetric much more quickly than they become Maxwellian. In other words, for near-Maxwellian solutions, one
@@ -1548,7 +1552,7 @@ solution where the hyperbolic cross performs much better.
 
 In Section~\ref{sec:relax} we give numerical evidence that the
 relaxation to equilibrium is indeed exponential in time, as demonstrated by
-\cite{Gressman11}.
+\cite{Gressman2011gcs}.
 
 In Section~\ref{sec:decay} we provide some numerical evidence for the exponential
 decay of $f_R$ stated in Conjecture~\ref{ass:decay}, which allowed us to prove the
@@ -1566,7 +1570,7 @@ with sufficiently high order Gaussian quadrature.
 
 As a verification of correctness, one can use the only known analytic
 non-equilibrium solution to the Boltzmann equation—the rotationally symmetric BKW
-solution \cite{Bobylev75,Krook77,Tourenne83,Ernst84}. It takes the form
+solution \cite{Bobylev1975esb,Krook1977esb,Tourenne1983ebs,Ernst1984esn}. It takes the form
 \begin{equation} \label{eqn:bkw}
     f(t,v) = (2\pi s)^{-d/2} \exp\left(-\frac{|\Bv|^2}{2s}\right)
             \left(1-\frac{1-s}{2s} \left(d-\frac{|\Bv|^2}{s}\right)\right)
@@ -1731,7 +1735,7 @@ Using $s=7$ and $\epsilon=10^{-2}$, we have plotted $\|f^p\|$ from \eqref{eq:fp}
 versus time for three different norms in Figure~\vref{fig:relaxation}. The
 convergence halts at $\|f^p\|\approx10^{-5}$ due to truncation error in $\Bv$ for
 all norms, but prior to this, exhibits behavior in accordance with
-\cite{Gressman11}.
+\cite{Gressman2011gcs}.
 
 \begin{figure}
     \centering
@@ -1838,7 +1842,7 @@ maintains its equilibrium very well due to the low aliasing.
     \label{fig:r:sqrt2}
 \end{figure}
 
-In \cite{Filbet11}, time-global consistency and convergence is shown under
+In \cite{Filbet2011asm}, time-global consistency and convergence is shown under
 various assumptions, one of which is $\kappa\geq\sqrt{2}$. The distribution for
 this scheme at $t=0.6$ is shown in Figure~\vref{fig:r:sqrt2}. This time is well
 before equilibrium is reached, and the effect of significant aliasing can be

@@ -12,7 +12,7 @@ $f$ in two dimensions using a polar coordinate representation
 \]
 where the angular modes $\xi$ are ordinary complex exponentials, and the radial modes $\varphi$ are
 exponentially weighted Laguerre polynomials. This has been done previously, but only for radially symmetric
-solutions (i.e. no dependence on $\theta$, see for example \cite{Ender94} and \cite{Ender99}, the former
+solutions (i.e. no dependence on $\theta$, see for example \cite{Ender1994mmi} and \cite{Ender1999pei}, the former
 appears unavailable in English). The present work features, to the best of our knowledge, the first
 development of a polar scheme for general solutions.
 
@@ -50,8 +50,8 @@ It will also be useful to use $\mu$ to denote a specific Maxwellian, instead of 
 Let us now define, for $l\in\bbZ$, $k\in\bbZ_{\geq0}$, $\beta>0$
 \begin{align}
     \xi_l : \quad [0,2\pi) \to \bbC \quad &: \quad \theta \mapsto \ee^{\ii l \theta}, \label{eqn:def-ce} \\
-    \psi_{k,\beta}^\rmS : \quad [0,\infty) \to \bbR \quad &: 
-        \quad r \mapsto \ee^{-\nicefrac{r^2}{\beta}} L_k^{(0)}(r^2), 
+    \psi_{k,\beta}^\rmS : \quad [0,\infty) \to \bbR \quad &:
+        \quad r \mapsto \ee^{-\nicefrac{r^2}{\beta}} L_k^{(0)}(r^2),
     \label{eqn:def-psis} \\
     \psi_{k,\beta}^\rmK : \quad [0,\infty) \to \bbR \quad &: \quad r \mapsto \frac{1}{\sqrt{k+1}}
                                                  \ee^{-\nicefrac{r^2}{\beta}} r L_k^{(1)}(r^2).
@@ -63,7 +63,7 @@ Laguerre polynomials or {\em Sonine} polynomials} of order $\alpha$. They are de
     L_k^{(\alpha)}(x) = \sum_{i=0}^k (-1)^k \binom{k+\alpha}{k-i} \frac{x^i}{i!},
 \end{equation}
 and satisfy the recurrence relations
-\begin{align} 
+\begin{align}
     \label{eqn:lag0-rec} (k+1)L^{(0)}_{k+1}(x) &= (2k+1-x)L_k^{(0)}(x) - kL_{k-1}^{(0)}(x), \qquad k \geq 1, \\
     \label{eqn:lag1-rec} L_k^{(\alpha+1)}(x) &= \sum_{i=0}^k L_i^{(\alpha)}(x),
 \end{align}
@@ -92,9 +92,9 @@ $k$ & $L_k^{(0)}$ & $L_k^{(1)}$ \\
 \label{fig:laguerre}
 \end{figure}
 
-The polynomials $L_k^{(\alpha)}$ are orthogonal with respect to the weight $\ee^{-x}x^\alpha$: 
+The polynomials $L_k^{(\alpha)}$ are orthogonal with respect to the weight $\ee^{-x}x^\alpha$:
 \begin{equation} \label{eqn:lag-orth}
-    \int_0^\infty \ee^{-x}x^\alpha L^{(\alpha)}_k(x) L^{(\alpha)}_l(x) \dd x 
+    \int_0^\infty \ee^{-x}x^\alpha L^{(\alpha)}_k(x) L^{(\alpha)}_l(x) \dd x
     = \binom{k+\alpha}{k} \Gamma(\alpha + 1) \delta_{k,l}.
 \end{equation}
 This is the motivation for the definitions \eqref{eqn:def-psis} and \eqref{eqn:def-psik}. Substituting
@@ -134,7 +134,7 @@ and satisfy the decay property
 \]
 \end{proposition}
 \begin{proof}
-The existence of the Laguerre series is given by \cite[Theorem B]{Szasz58}.  By \cite[Lemma 3.4]{Szasz58} we
+The existence of the Laguerre series is given by \cite[Theorem B]{Szasz1958raf}.  By \cite[Lemma 3.4]{Szasz1958raf} we
 also conclude that for all $b$,
 \[
     \big|a^{(0)}_k\big| \leq C(b) \ee^{-2b\sqrt{k}}.
@@ -152,7 +152,7 @@ The Laguerre polynomials satisfy
 We proceed by induction. As $L_0(x)=1$ and $L_1(x)=1-x$, the statement is evidently true for $k=0$. For the
 induction step, we note that
 \begin{align*}
-    xL^{(1)}_k 
+    xL^{(1)}_k
     & \quad \overset{\mathclap{\text{\eqref{eqn:lag1-rec}}}}{=} \quad
     xL^{(1)}_{k-1} + xL^{(0)}_k \\
     & \quad \overset{\mathclap{\text{IH}}}{=} \quad
@@ -171,9 +171,9 @@ expansions of symmetric and anti-symmetric functions in terms of $\psi^\rmS$ and
 \begin{proposition} \label{prop:sz2}
 Let $f^\rmS, f^\rmK: [0,\infty) \to \bbR$ be given. Assume that $f^\rmS$ and $\frac{1}{r}f^\rmK$ have analytic
 symmetric extensions to the strip $s(c)$ for some $c>0$, and that for every $b$ such that $0\leq b<c$, there
-exists $C(b)$ such that 
+exists $C(b)$ such that
 \begin{equation} \label{eqn:sz-fastdecay}
-    |f^\rmS(z)|, \left|\frac{1}{z}f^\rmK(z)\right| \leq C(b) 
+    |f^\rmS(z)|, \left|\frac{1}{z}f^\rmK(z)\right| \leq C(b)
     \exp\left[-\frac{|z|^2}{\beta}+\frac{x^2}{2} - |y|\left(b^2 - y^2\right)^{\frac{1}{2}}\right],
 \end{equation}
 for all $z=x+\ii y \in s(b)$. Then there exist convergent series
@@ -183,13 +183,13 @@ for all $z=x+\ii y \in s(b)$. Then there exist convergent series
 \end{equation}
 where, using $\mu$ as defined in \eqref{eqn:norm-max},
 \begin{equation*}
-    a^\rmS_{k,\beta} = \int_0^\infty \ee^{\nicefrac{x}{\beta}-x} L_k(x) f^\rmS(\sqrt{x}) \dd x 
+    a^\rmS_{k,\beta} = \int_0^\infty \ee^{\nicefrac{x}{\beta}-x} L_k(x) f^\rmS(\sqrt{x}) \dd x
              = 2\int_0^\infty \mu^{1-\nicefrac{2}{\beta}}(r) \psi^\rmS_{k,\beta}(r) f^\rmS(r) r \dd r \\
 \end{equation*}
 and
 \begin{align*}
-    a^\rmK_{k,\beta} 
-        &= \frac{1}{\sqrt{k+1}} \int_0^\infty \ee^{\nicefrac{x}{\beta}-x} 
+    a^\rmK_{k,\beta}
+        &= \frac{1}{\sqrt{k+1}} \int_0^\infty \ee^{\nicefrac{x}{\beta}-x}
                         \sqrt{x} L^{(1)}_k(x) f^\rmK(\sqrt{x}) \dd x \\
         &= 2\int_0^\infty \mu^{1-\nicefrac{2}{\beta}}(r) \psi^\rmK_{k,\beta}(r) f^\rmK(r) r \dd r,
 \end{align*}
@@ -228,14 +228,14 @@ to approximate $a^\rmS_{k,\beta}(\theta)$ in terms of the complex exponentials $
 
 To simplify notation, let us introduce the functions
 \[
-    \varphi_k^{(\beta)} = \begin{cases} 
-        \psi^\rmS_{\nicefrac{k}{2},\,\beta}, & k \equiv 0\; (\Mod 2), \\ 
+    \varphi_k^{(\beta)} = \begin{cases}
+        \psi^\rmS_{\nicefrac{k}{2},\,\beta}, & k \equiv 0\; (\Mod 2), \\
         \psi^\rmK_{\nicefrac{(k-1)}{2},\,\beta}, & k \equiv 1\; (\Mod 2),
     \end{cases}
 \]
 so that we may write
 \[
-    f(r,\theta) = f^\rmS(r,\theta) + f^\rmK(r,\theta) = 
+    f(r,\theta) = f^\rmS(r,\theta) + f^\rmK(r,\theta) =
     \sum_{k=0}^\infty a_k^{(\beta)}(\theta) \varphi_k^{(\beta)}(r),
 \]
 where $a_k$ corresponds to $a^\rmS_{\nicefrac{k}{2},\,\beta}$ for even $k$ and to
@@ -254,9 +254,9 @@ Let us first consider $k$ even. Then
 \begin{align*}
     F_{k,l}^{(\beta)} &= \frac{1}{\pi} \int_0^{2\pi} \int_0^\infty \mu^{1-\nicefrac{2}{\beta}}
              \varphi_k^{(\beta)} \xi_{-l} f^\rmS \; r \dd r \dd\theta \\
-          &= \frac{1}{\pi} \int_{\bbR^2} \mu^{1-\nicefrac{2}{\beta}} \varphi_k^{(\beta)} 
+          &= \frac{1}{\pi} \int_{\bbR^2} \mu^{1-\nicefrac{2}{\beta}} \varphi_k^{(\beta)}
              \xi_{-l} f^\rmS \dd \Bv
-           = \frac{1}{\pi} \int_{\bbR^2} \mu^{1-\nicefrac{2}{\beta}} \varphi_k^{(\beta)} 
+           = \frac{1}{\pi} \int_{\bbR^2} \mu^{1-\nicefrac{2}{\beta}} \varphi_k^{(\beta)}
              \xi_{-l} f \dd \Bv,
 \end{align*}
 since $\xi_{-l}$ is even, the corresponding integral with $f^\rmK$ will be zero. Precisely the same argument
@@ -266,7 +266,7 @@ applies for $k$ odd. As such, we arrive at
 \end{equation}
 where the notation $a|b$ is understood to mean that $a$ divides evenly into $b$. The coefficients are given by
 \[
-    F_{k,l}^{(\beta)} = \frac{1}{\pi} \int_{\bbR^2} \mu^{1-\nicefrac{2}{\beta}} 
+    F_{k,l}^{(\beta)} = \frac{1}{\pi} \int_{\bbR^2} \mu^{1-\nicefrac{2}{\beta}}
                         \varphi_k^{(\beta)} \xi_{-l} f \dd\Bv.
 \]
 This implies that the functions $\varphi_k^{(\beta)}\xi_l$ form an orthogonal system with respect to the
@@ -274,9 +274,9 @@ weight $\mu^{1-\nicefrac{2}{\beta}}$. This is in fact the case, and it is not di
 \begin{proposition} \label{prop:orthopol}
 Assuming $k_1 \equiv l_1\;(\Mod2)$ and $k_2\equiv l_2\;(\Mod2)$, we have
 \[
-    \left\langle \varphi_{k_1}^{(\beta)} \xi_{l_1}, \varphi_{k_2}^{(\beta)} \xi_{l_2} 
-    \right\rangle_{L^2(\bbR^2;\,\beta)} 
-    = \int_{\bbR^2} \mu^{1-\nicefrac{2}{\beta}} 
+    \left\langle \varphi_{k_1}^{(\beta)} \xi_{l_1}, \varphi_{k_2}^{(\beta)} \xi_{l_2}
+    \right\rangle_{L^2(\bbR^2;\,\beta)}
+    = \int_{\bbR^2} \mu^{1-\nicefrac{2}{\beta}}
       \varphi_{k_1}^{(\beta)} \xi_{l_1} \varphi_{k_2}^{(\beta)} \xi_{-l_2} \dd\Bv
     = \pi \delta_{k_1,k_2} \delta_{l_2,l_2}.
 \]
@@ -285,8 +285,8 @@ Assuming $k_1 \equiv l_1\;(\Mod2)$ and $k_2\equiv l_2\;(\Mod2)$, we have
 First, we note that if $k_1$ and $k_2$ have different parities, the integrand in question is odd, so the
 integral is zero. Thus, we assume from now that they have equal parities. We have
 \begin{align*}
-    \left\langle \varphi^{(\beta)}_{k_1}\xi_{l_1}, \varphi^{(\beta)}_{k_2}\xi_{l_2} 
-    \right\rangle_{L^2(\bbR^2;\,\beta)} 
+    \left\langle \varphi^{(\beta)}_{k_1}\xi_{l_1}, \varphi^{(\beta)}_{k_2}\xi_{l_2}
+    \right\rangle_{L^2(\bbR^2;\,\beta)}
     &= \int_0^{2\pi} \xi_{l_1-l_2} \dd\theta \int_0^\infty \mu^{1-\nicefrac{2}{\beta}}
        \varphi_{k_1}^{(\beta)} \varphi_{k_2}^{(\beta)}\; r \dd r \\
     &= 2\pi\delta_{l_1,l_2} \int_0^\infty \mu^{1-\nicefrac{2}{\beta}}
@@ -304,7 +304,7 @@ And for $k_1, k_2$ both odd, we find, using $Z(a,b)=[(a+1)(b+1)]^{-\nicefrac{1}{
     \int_0^\infty \mu^{1-\nicefrac{2}{\beta}} \varphi_{k_1}^{(\beta)} \varphi_{k_2}^{(\beta)} r \dd r
     &= 2Z(k_1,k_2) \int_0^\infty
        \ee^{-r^2} r^2 L^{(1)}_{\nicefrac{(k_1-1)}{2}}(r^2) L^{(1)}_{\nicefrac{(k_2-1)}{2}}(r^2)\; r \dd r \\
-    &= Z(k_1,k_2) \int_0^\infty 
+    &= Z(k_1,k_2) \int_0^\infty
        \ee^{-x} x L^{(1)}_{\nicefrac{(k_1-1)}{2}}(x) L^{(1)}_{\nicefrac{(k_2-1)}{2}}(x) \dd x \\
     & \overset{\text{\eqref{eqn:lag-orth}}}{=} \frac{1}{2} \delta_{k_1,k_2}.
 \end{align*}
@@ -344,7 +344,7 @@ this case. In this way we also avoid all the aliasing effects which plague the F
 \section{Equilibria and initial values}
 \label{sec:polar-equilibria}
 
-The space $\cV_\beta(K,L)$ contains functions on the form 
+The space $\cV_\beta(K,L)$ contains functions on the form
 \[
     \varphi^{(\beta)}_0\xi_0 = \exp(-\nicefrac{|\Bv|^2}{\beta}),
 \]
@@ -418,14 +418,14 @@ the method, since conformity can be maintained without assembling discrete colli
 of different spaces with different values of observables.
 \begin{theorem} \label{thm:conf-sols}
     Let $f(t,\Bv)$ be a solution to \eqref{eqn:boltzmann-sphom}, where $B$ satisfies Assumption~\ref{ass:B}.
-    Let $\beta>0$ be given, and assume $f$ has mass density, momentum and temperature $\rho$, $\Bu$ and $T$. 
+    Let $\beta>0$ be given, and assume $f$ has mass density, momentum and temperature $\rho$, $\Bu$ and $T$.
     Define
     \begin{equation} \label{eqn:poltrf}
         \gamma = \sqrt{\frac{2T}{\beta}}, \qquad
         \alpha = \frac{2\pi T}{\rho}, \qquad
         \eta   = \frac{\alpha}{\gamma^{\lambda+2}}.
     \end{equation}
-    Then 
+    Then
     \[
         h(t,\Bv)=\alpha f(\eta t, \gamma\Bv + \Bu)
     \]
@@ -435,7 +435,7 @@ of different spaces with different values of observables.
 \begin{proof}
     We show that $h$ is conforming. Indeed,
     \begin{equation} \label{eqn:poltrf-mass}
-        \rho(h) = \alpha\int_{\bbR^2} f(\gamma\Bv+\Bu) \dd\Bv 
+        \rho(h) = \alpha\int_{\bbR^2} f(\gamma\Bv+\Bu) \dd\Bv
         = \frac{\alpha}{\gamma^2}\int_{\bbR^2} f(\gamma\Bv+\Bu) \dd(\gamma\Bv+\Bu)
         = \frac{\alpha}{\gamma^2}\rho,
     \end{equation}
@@ -450,7 +450,7 @@ of different spaces with different values of observables.
     \end{align}
     Setting $\rho(h)=\beta\pi$ and $T(h)=\nicefrac{\beta}{2}$, and solving
     \eqref{eqn:poltrf-mass}-\eqref{eqn:poltrf-T} for $\alpha,\gamma$, we find precisely \eqref{eqn:poltrf}. It
-    is easy to see that $\Bu(h)=\Bzero$. 
+    is easy to see that $\Bu(h)=\Bzero$.
     
     It being a solution to \eqref{eqn:boltzmann-sphom} is an easy corollary of theorems \ref{thm:trans-rot-Q}
     and \ref{thm:trf-sols}.
@@ -480,7 +480,7 @@ Then,
     \rho\left(\xi_0\psi^\rmS_{k,\beta}\right) &= \beta\pi(1-\beta)^k, \\
     (\Bu\rho)\left(\xi_{\pm 1}\psi^\rmK_{k,\beta}\right) &= \frac{\beta^2\pi}{2}\sqrt{k+1}(1-\beta)^k
     \begin{pmatrix}1\\\pm1\end{pmatrix}, \\
-    (E\rho)\left(\xi_0\psi^\rmS_{k,\beta}\right) &= 
+    (E\rho)\left(\xi_0\psi^\rmS_{k,\beta}\right) &=
         \begin{cases}
             \beta^2\pi[1-(k+1)\beta](1-\beta)^{k-1}, & k>0, \\
             \beta^2\pi, & k=0,
@@ -501,11 +501,11 @@ integration against $\xi_l$ for $l\neq-1$ must yield zero.
 
 Thus, for mass density we have
 \begin{align*}
-\rho\left(\xi_0\psi^\rmS_{k,\beta}\right) 
+\rho\left(\xi_0\psi^\rmS_{k,\beta}\right)
 &= 2\pi \int_0^\infty \ee^{-\nicefrac{r^2}{\beta}} L_k(r^2) \,r \dd r
  = \beta\pi \int_0^\infty \ee^{-u} L_k(\beta u) \dd u \\
 &= \beta\pi \int_0^\infty \ee^{-u} \sum_{i=0}^k \binom{k}{i} \frac{(-1)^i}{i!} (\beta u)^i \dd u \\
-&= \beta\pi \sum_{i=0}^k \binom{k}{i} \frac{(-\beta)^i}{i!} 
+&= \beta\pi \sum_{i=0}^k \binom{k}{i} \frac{(-\beta)^i}{i!}
    \underbrace{\int_0^\infty \ee^{-u} u^i \dd u}_{=\Gamma(i+1)=i!} \\
 &= \beta\pi \sum_{i=0}^k \binom{k}{i} (-\beta)^i 1^{k-i}
  = \beta\pi(1-\beta)^k.
@@ -534,7 +534,7 @@ Lastly, momentum:
    \int_0^\infty \ee^{-\nicefrac{r^2}{\beta}} r^2 L_k^{(1)}(r^2) \, r \dd r \\
 &= \frac{\beta^2\pi}{2}\begin{pmatrix}1\\\pm1\end{pmatrix}
    \int_0^\infty \ee^{-u} u L_k^{(1)}(\beta u) \dd u \\
-&= \frac{\beta^2\pi}{2}\begin{pmatrix}1\\\pm1\end{pmatrix} 
+&= \frac{\beta^2\pi}{2}\begin{pmatrix}1\\\pm1\end{pmatrix}
    \int_0^\infty \ee^{-u} u \sum_{i=0}^k \binom{k+1}{k-i} (\beta u)^i \dd u \\
 &= \frac{\beta^2\pi}{2}\begin{pmatrix}1\\\pm1\end{pmatrix}
    \sum_{i=0}^k \binom{k+1}{k-i} \frac{(-\beta)^i}{i!} \int_0^\infty \ee^{-u} u^{i+1} \dd u \\
@@ -581,12 +581,12 @@ The last detail to keep in mind is that any $\beta>2$ results in an unbounded ba
 \[
     \sup_k \; \sup_r \left|\varphi^{(\beta)}_k(r)\right| = \infty.
 \]
-This fact follows from the following asymptotic expression \cite[Equation 2.12]{Gavrilyuk11}:
+This fact follows from the following asymptotic expression \cite[Equation 2.12]{Gavrilyuk2011qtc}:
 \[
     L_k^{(\alpha)}(x) = \pi^{-\nicefrac{1}{2}} \ee^{\nicefrac{x}{2}}
                         x^{-\nicefrac{\alpha}{2}-\nicefrac{1}{4}}
                         k^{\nicefrac{\alpha}{2}-\nicefrac{1}{4}}
-                        \left[ \cos\left(2\sqrt{kx}-\omega\pi\right) + 
+                        \left[ \cos\left(2\sqrt{kx}-\omega\pi\right) +
                                \cO\left(k^{-\nicefrac{1}{2}}\right)
                         \right],
 \]
@@ -605,7 +605,7 @@ jonsidered here.
 We now turn to the practical aspects of evaluating $Q(f,g)$ for $f,g\in \cV_\beta(K,L)$. Taking the
 $L^2(\bbR^2;\,\beta)$-orthogonal approximation by discarding the extra coefficients, we have
 \begin{equation} \label{eqn:polar-update}
-    Q(f,g) = \sum_{k,l}\left(\sum_{k_1,k_2,l_1,l_2} 
+    Q(f,g) = \sum_{k,l}\left(\sum_{k_1,k_2,l_1,l_2}
              S_{k_1,k_2,l_1,l_2}^{k,l} F^{(\beta)}_{k_1,l_1} G^{(\beta)}_{k_2,l_2} \right)
              \varphi^{(\beta)}_k\xi_l,
 \end{equation}
@@ -652,8 +652,8 @@ complexity of ``only'' $N^{2d+1}$ compared to the $N^{2d}$ of the Fourier spectr
 \begin{remark} \label{rem:rot-pol}
 The core problem with generalizing this method to higher dimensions is to find an analogue of
 Corollary~\ref{cor:rot-Q} for $d>2$. The problem of rotating expansions in spherical harmonics is nontrivial.
-The classical text is \cite{Wigner31}. For more recent work, see for example \cite{Ivanic96} (real spherical
-harmonics) and \cite{Lessig12}.
+The classical text is \cite{Wigner1931gaq}. For more recent work, see for example \cite{Ivanic1996rmr} (real spherical
+harmonics) and \cite{Lessig2012ear}.
 
 At least, what can be said is that these rotation operators are band-restricted, so that a rotated spherical
 harmonic $Y_l^m$ contains no contributions from harmonics with degrees different from $l$.
@@ -669,7 +669,7 @@ Moreover, the computation of $S$ and the timestepping itself is particularly ope
 Let us now turn to the issue of evaluating the coefficients of $K$. For this, we will split the operator into
 gain and loss parts, and first consider the loss part.
 \begin{align*}
-    S_{k_1,k_2,l_1,l_2}^{k,l\;(-)} 
+    S_{k_1,k_2,l_1,l_2}^{k,l\;(-)}
     &= \frac{1}{\pi} \left\langle Q^-\left(\varphi^{(\beta)}_{k_1} \xi_{l_1},
     \varphi^{(\beta)}_{k_2} \xi_{l_2}\right), \varphi^{(\beta)}_k \xi_l \right\rangle_{L^2(\bbR^2;\,\beta)} \\
     &= \frac{1}{\pi} \int_{\bbR^2}\int_{\bbR^2}\int_{\bbS^1}B(|\Bv-\Bv_\ast|,\cos\theta) \\
@@ -678,7 +678,7 @@ gain and loss parts, and first consider the loss part.
     \left(\varphi^{(\beta)}_{k_2}\xi_{l_2}\right)(\Bv_\ast)
     \dd\Bsigma\dd\Bv_\ast\dd\Bv \\
     &= \frac{1}{\pi}
-    \int_{\bbR^2} \left(\mu^{1-\nicefrac{2}{\beta}} 
+    \int_{\bbR^2} \left(\mu^{1-\nicefrac{2}{\beta}}
             \varphi^{(\beta)}_{k_1}\xi_{l_1} \varphi^{(\beta)}_{k}\xi_{-l}\right)(\Bv)
     \int_{\bbR^2} \left(\varphi^{(\beta)}_{k_2}\xi_{l_2}\right)(\Bv_\ast) \cI^-(\Bv,\Bv_\ast) \dd\Bv_\ast \dd\Bv,
 \end{align*}
@@ -697,12 +697,12 @@ fact, by Assumption~\ref{ass:B}, we have
 For the Maxwellian kernel, $B\equiv\nicefrac{1}{2\pi}$, the loss part is particularly easy to evaluate, as
 $\cI^-\equiv1$, giving
 \begin{align*}
-    S_{k_1,k_2,l_1,l_2}^{k,l\;(-)} 
+    S_{k_1,k_2,l_1,l_2}^{k,l\;(-)}
     &= \frac{1}{\pi} \int_{\bbR^2} \left( \mu^{1-\nicefrac{2}{\beta}}
        \varphi^{(\beta)}_{k_1}\xi_{l_1} \varphi^{(\beta)}_{k}\xi_{-l}\right)\dd\Bv
        \int_{\bbR^2} \left(\varphi^{(\beta)}_{k_2}\xi_{l_2}\right)\dd\Bv_\ast \\
-    &= \frac{1}{\pi} \left\langle\varphi^{(\beta)}_{k_1}\xi_{l_1}, 
-                                 \varphi^{(\beta)}_{k}\xi_{l}\right\rangle_{L^2(\bbR^2;\,\beta)} 
+    &= \frac{1}{\pi} \left\langle\varphi^{(\beta)}_{k_1}\xi_{l_1},
+                                 \varphi^{(\beta)}_{k}\xi_{l}\right\rangle_{L^2(\bbR^2;\,\beta)}
        \rho\left(\varphi^{(\beta)}_{k_2}\xi_{l_2}\right) \\
        &= \delta_{k,k_1}\;\delta_{l,l_1}\;\delta_{0,l_2}\;\rho\left(\varphi^{(\beta)}_{k_2}\right)
 \end{align*}
@@ -710,7 +710,7 @@ Theorem~\ref{thm:polobs} provides the mass densities.
 
 Let us now turn to the gain part. In a similar vein as before, we find
 \begin{align*}
-    S_{k_1,k_2,l_1,l_2}^{k,l\;(+)} 
+    S_{k_1,k_2,l_1,l_2}^{k,l\;(+)}
     &= \frac{1}{\pi} \left\langle Q^+\left(\varphi^{(\beta)}_{k_1} \xi_{l_1},
     \varphi^{(\beta)}_{k_2} \xi_{l_2}\right), \varphi^{(\beta)}_k \xi_l \right\rangle_{L^2(\bbR^2;\,\beta)} \\
     &= \frac{1}{\pi} \int_{\bbR^2}\int_{\bbR^2}\int_{\bbS^1}B(|\Bv-\Bv_\ast|,\cos\theta)
@@ -726,7 +726,7 @@ Let us now turn to the gain part. In a similar vein as before, we find
 \end{align*}
 with
 \begin{equation} \label{eqn:inner-trf-before}
-    \cI_{k,l}^+(\Bv,\Bv_\ast) = \int_{\bbS^1} B(|\Bv-\Bv_\ast|, \cos\theta) 
+    \cI_{k,l}^+(\Bv,\Bv_\ast) = \int_{\bbS^1} B(|\Bv-\Bv_\ast|, \cos\theta)
     \left(\mu^{1-\nicefrac{2}{\beta}}\varphi_{k}\xi_{-l}\right)(\Bv') \dd\Bsigma.
 \end{equation}
 Here, we have made a change of variables $\Bv,\Bv_\ast \longleftrightarrow \Bv',\Bv_\ast'$, revealing a
@@ -838,10 +838,10 @@ and having a sparse representation.
 \begin{figure}
 \centering
 \subfloat[$L^2$-error versus time.]{
-    \includegraphics[width=14cm]{figs/polboltz/bkw}
+    \includegraphics[width=7cm]{figs/polboltz/bkw}
 } \\
 \subfloat[$L^2$-error versus $K$.]{
-    \includegraphics[width=14cm]{figs/polboltz/bkw-flip}
+    \includegraphics[width=7cm]{figs/polboltz/bkw-flip}
 }
 \caption{$L^2$-error for the BKW solution depending on $K$ and time. See Section~\vref{sec:numpol-verify} for
 details.}

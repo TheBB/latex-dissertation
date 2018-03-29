@@ -22,8 +22,8 @@ $\kappa=f=0$. The value of $u$ at some point $\Bx$ is then determined strictly b
 points of $\Gamma_-$ which are contained in the characteristics emanating backwards from $\Bx$. If $u_0$ is
 not sufficiently regular, $u$ might not even be differentiable at $\Bx$ in directions other than $\Bv(\Bx)$.
 
-We will discretize the equation using the least squares method (see for example \cite{Widmer08}), giving the
-bilinear form
+We will discretize the equation using the least squares method (see
+for example \cite{Widmer2008saf}), giving the bilinear form
 \[ 
     \blfa(u,w) = \left(\Bv\cdot\nabla u + \kappa u, \Bv\cdot\nabla w + \kappa w\right)_{L^2(\Omega)}
 \]
@@ -54,7 +54,8 @@ example penalty methods.
 \section{Shearlets}
 
 Shearlets are one of several function systems designed to efficiently capture anisotropic features in two
-dimensions, originally developed and used in image compression and edge detection \cite{Labate05, Easley08}.
+dimensions, originally developed and used in image compression and
+edge detection \cite{Labate2005smr, Easley2008sdi}.
 In particular, they are able to {\em almost optimally} represent ``cartoon-like'' functions $f$, up to
 logarithmic factors. So long as $\Bv$ is sufficiently smooth, these are precisely the kind of edge
 discontinuities solutions of \eqref{eqn:trp} might exhibit.
@@ -70,7 +71,7 @@ f_1 \in C^2_0([0,1]^2)$, where $B$ is the set defined in polar coordinates as
 for some $\rho :  [0,\nicefrac{\pi}{2}] \to \bbR_{\geq0}$ satisfying $|\rho''(\theta)| < \nu$ for all $\theta$.
 \end{definition}
 Then, shearlets can be shown to satisfy the following approximation result.
-\begin{theorem}[Theorem 2 in \cite{Guo07}] \label{thm:shearlet-opt}
+\begin{theorem}[Theorem 2 in \cite{Guo2007osm}] \label{thm:shearlet-opt}
 Let $f\in\cE^2(\nu)$ for some $\nu>0$, and let $f_N$ be the optimal approximation to $f$ by using the $N$ as
 obtained by summing the $N$ coefficients of largest magnitude in the full shearlet approximation. Then
 \[
@@ -78,9 +79,9 @@ obtained by summing the $N$ coefficients of largest magnitude in the full shearl
 \]
 \end{theorem}
 The optimality lies in the fact that $\cO(N^{-2})$ is the fastest possible rate achievable for this class of
-functions \cite{Donoho01}. One drawback of Theorem~\ref{thm:shearlet-opt} is that it requires shearlets with
+functions \cite{Donoho2001sci}. One drawback of Theorem~\ref{thm:shearlet-opt} is that it requires shearlets with
 compact support in frequency space, thus global support in physical space. The result was extended in
-\cite{Kutyniok11} to apply to physically compactly supported shearlets, with some additional restrictions on
+\cite{Kutyniok2011css} to apply to physically compactly supported shearlets, with some additional restrictions on
 the moments.
 
 Given ``source'' or ``mother'' functions $\hPsi_m:\bbR^2\to\bbR$, shearlets are functions of the form
@@ -136,7 +137,7 @@ that $s_x>s_y$ may be taken as absolute. Some interesting choices are
 \begin{itemize}
 \item $(s_x,s_y) = (4,2)$. These are the classical shearlets.
 \item $(s_x,s_y) = (2,1)$, also known as {\em ridgelets}. These functions shrink only in one dimension, and
-are suitable for the case of constant transport direction $\Bv$, see \cite{Grohs12}.
+are suitable for the case of constant transport direction $\Bv$, see \cite{Grohs2012rfd}.
 \item $(s_x,s_y) = (2,\sqrt{2})$. These functions provide somewhat finer resolution in level than the case
 $(4,2)$.
 \end{itemize}
@@ -368,8 +369,8 @@ on quadrature rules.
 
 Once a suitable boundary multiplier function has been found, we simply substitute $z\Psi$ for every shearlet
 $\Psi$, forming a new basis (for a different function space, a subspace of $V_0$) that conforms to the
-boundary conditions. This treatment closely conforms to the partition of unity method (see \cite{Melenk96} and
-\cite{Babuska97}).
+boundary conditions. This treatment closely conforms to the partition of unity method (see \cite{Melenk1996puf} and
+\cite{Babuska1997pum}).
 
 We will also consider periodic boundary conditions, where this construction is unnecessary.
 
@@ -540,7 +541,7 @@ In the following, we will describe in some detail a basic implementation for a s
 difficulties faced.
 
 At the time this work was done, this was the only shearlet implementation available intended for the solution
-of PDEs. Since then, other work has shown promise using different strategies, among them \cite{ObermeierXX}.
+of PDEs. Since then, other work has shown promise using different strategies, among them \cite{Obermeier2013}.
 
 \subsection{Numbering}
 
@@ -845,11 +846,11 @@ pseudo-code is presented in Algorithm~\ref{alg:buildsquadrule}.
 
 Our method relies on computing intersections between many different polygons, or deciding if polygons are
 disjoint. There are several algorithms for computing and detecting intersections, see for example
-\cite{Toussaint85, Rourke82, Chazelle80}.  These all assume convexity, which is valid in\
+\cite{Toussaint1985sla, Rourke1982nla, Chazelle1980dec}.  These all assume convexity, which is valid in\
 our case.
 
 For checking disjointedness, we rely on the {\em separating axis theorem}, which is commonly used in game
-programming for collision detection \cite{Gottschalk96}.
+programming for collision detection \cite{Gottschalk1996sat}.
 
 \begin{theorem}[Separating Axis Theorem (SAT)] \label{thm:sat}
 Let $A,B\subseteq\bbR^2$ be convex sets in $\bbR^2$. Then $A \cap B=\emptyset$ if and only if there exists a
@@ -933,7 +934,7 @@ true if the supports intersect.}
 \end{algorithm}
 
 For actually {\em computing} the intersection between two polygons we have employed the General Polygon
-Clipper (GPC) library from the University of Manchester \cite{GPC}.
+Clipper (GPC) library from the University of Manchester \cite{Murta2012}.
 
 For the case of periodic boundary conditions, some more work is needed. Two shearlets that do not intersect in
 the non-periodic case can nevertheless intersect if they are periodically extended. For checking the
